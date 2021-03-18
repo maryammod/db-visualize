@@ -64,11 +64,7 @@
                       loading="lazy"
                       class="w-full"
                     >
-                      <cld-transformation
-                        crop="scale"
-                        dpr="auto"
-                        fetchFormat="auto"
-                      />
+                      
                       <cld-placeholder type="blur" />
                     </cld-image>
                     <ul class="text-sm mt-4">
@@ -87,11 +83,11 @@
                       </li>
                       <li>
                         <span class="font-bold">Planted:</span>
-                        {{ $date(plant.planted_at).format('YYYY/MM/DD') }}
+                        {{ $moment(plant.planted_at).format('YYYY/MM/DD') }}
                       </li>
                       <li>
                         <span class="font-bold">Taken:</span>
-                        {{ $date(plant.taken_at).format('YYYY/MM/DD') }}
+                        {{ $moment(plant.taken_at).format('YYYY/MM/DD') }}
                       </li>
                     </ul>
                   </li>
@@ -117,7 +113,6 @@ export default {
       .catch((err) => {
         error({ statusCode: 404, message: 'Page not found' })
       })
-    console.log(data)
     const ordered = orderBy(data.rows, 'label')
     return {
       rows: ordered,
@@ -169,7 +164,7 @@ export default {
       return groupBy(items, key)
     },
     publicId(filename) {
-      return 'thesis/samples/' + filename.replaceAll(' ', '_')
+      return 'thesis/samples/' + filename
     },
     namespace(object, path) {
       return path.split('.').reduce((value, index) => {
