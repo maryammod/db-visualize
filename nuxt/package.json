@@ -16,6 +16,7 @@
     "lodash.debounce": "^4.0.8",
     "lodash.groupby": "^4.6.0",
     "lodash.orderby": "^4.6.0",
+    "lodash.sortby": "^4.7.0",
     "material-icons": "^0.5.4",
     "nuxt": "2.15.3",
     "vue-dayjs-plugin": "^1.0.0",
