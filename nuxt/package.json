@@ -11,8 +11,10 @@
   "dependencies": {
     "@nuxt/content": "^1.14.0",
     "@nuxtjs/cloudinary": "^1.0.3-beta-3",
+    "algoliasearch": "^4.8.6",
     "core-js": "^3.8.3",
     "fuse.js": "^6.4.6",
+    "instantsearch.css": "^7.4.5",
     "lodash.debounce": "^4.0.8",
     "lodash.groupby": "^4.6.0",
     "lodash.orderby": "^4.6.0",
@@ -21,6 +23,7 @@
     "nuxt": "2.15.3",
     "vue-dayjs-plugin": "^1.0.0",
     "vue-debounce": "^2.6.0",
+    "vue-instantsearch": "^3.5.0",
     "vue-scrollto": "^2.20.0",
     "vue-simple-accordion": "^0.1.0",
     "vuesax": "^3.12.2"
