@@ -21,10 +21,15 @@ const run = async () => {
   
   let cursor = photos.aggregate([
     {
+      $match: {
+        taken_at: { $gte: new Date("2020-04-01T00:00:00Z") },
+      },
+    },
+    {
       $group: {
-        _id: { label: "$label" },
-        label: { $first: "$label"},
-        plant_ids: { $addToSet: "$plant_id" },
+        _id: { label: "$label_2" },
+        label: { $first: "$label_2"},
+        plant_ids: { $addToSet: "$plant_id_2" },
       },
     }
   ])
@@ -39,12 +44,12 @@ const run = async () => {
     console.log(d.label, d.plant_id)
     let cursor2 = photos.aggregate([
       {
-          $match:{ plant_id: d.plant_id}
+          $match:{ plant_id_2: d.plant_id}
       },
       {
         $group: {
           _id: null,
-          plant_id: { $last: "$plant_id"},
+          plant_id_2: { $last: "$plant_id_2"},
           count: { $sum: 1 },
         },
       }

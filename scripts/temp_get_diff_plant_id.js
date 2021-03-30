@@ -9,23 +9,6 @@ const { MongoClient } = require("mongodb");
 const uri = "mongodb://localhost:27017?writeConcern=majority";
 const client = new MongoClient(uri);
 
-//
-
-const getAllFiles = function (dirPath, arrayOfFiles) {
-  files = fs.readdirSync(dirPath);
-
-  arrayOfFiles = arrayOfFiles || [];
-
-  files.forEach(function (file) {
-    if (fs.statSync(dirPath + "/" + file).isDirectory()) {
-      arrayOfFiles = getAllFiles(dirPath + "/" + file, arrayOfFiles);
-    } else {
-      arrayOfFiles.push(path.join(dirPath, "/", file));
-    }
-  });
-
-  return arrayOfFiles;
-};
 
 const run = async () => {
   
@@ -47,19 +30,19 @@ const run = async () => {
       plantIdSet.add(`${doc.plant_id_2}__${doc.plant_id}`)
   }
 
-  // console.log("New Plant_id,Old Plant_id")
-  // let plantIds = Array.from(plantIdSet).sort();
-  // plantIds.forEach(item=>{
-  //   let map = item.split("__");
-  //   console.log(`"${map[0]}","${map[1]}"`)
-  // })
-
-  console.log("New Label,Old Label")
-  let labels = Array.from(labelSet).sort();
-  labels.forEach(item=>{
+  console.log("New Plant_id,Old Plant_id")
+  let plantIds = Array.from(plantIdSet).sort();
+  plantIds.forEach(item=>{
     let map = item.split("__");
     console.log(`"${map[0]}","${map[1]}"`)
   })
+
+  // console.log("New Label,Old Label")
+  // let labels = Array.from(labelSet).sort();
+  // labels.forEach(item=>{
+  //   let map = item.split("__");
+  //   console.log(`"${map[0]}","${map[1]}"`)
+  // })
 
   // console.log({labelSet})
   // console.log({plantIdSet})
