@@ -13,25 +13,46 @@
               <ais-search-box />
             </div>
             <div>
-              <ais-powered-by class="mt-4"/>
+              <ais-powered-by class="mt-4" />
             </div>
           </div>
           <div class="py-8 space-y-2">
             <h3 class="font-bold">Label</h3>
-            <ais-refinement-list attribute="label_2" :searchable="true" searchable-placeholder="search for label" show-more :sort-by="['isRefined', 'name:asc']"/>
+            <ais-refinement-list
+              attribute="label_2"
+              :searchable="true"
+              searchable-placeholder="search for label"
+              show-more
+              :sort-by="['isRefined', 'name:asc']"
+            />
           </div>
           <div class="py-8 space-y-2">
             <h3 class="font-bold">Plant_id</h3>
-            <ais-refinement-list attribute="plant_id_2" :searchable="true" searchable-placeholder="search for plant_id" show-more :sort-by="['isRefined', 'name:asc']"/>
+            <ais-refinement-list
+              attribute="plant_id_2"
+              :searchable="true"
+              searchable-placeholder="search for plant_id"
+              show-more
+              :sort-by="['isRefined', 'name:asc']"
+            />
           </div>
           <div class="py-8 space-y-2">
             <h3 class="font-bold">Age</h3>
-            <ais-refinement-list attribute="age" :searchable="true" searchable-placeholder="search for age" show-more :sort-by="['isRefined', 'name:asc']"/>
+            <ais-range-input attribute="age"> </ais-range-input>
           </div>
+          <!-- <div class="py-8 space-y-2">
+            <h3 class="font-bold">Age</h3>
+            <ais-refinement-list
+              attribute="age"
+              :searchable="true"
+              searchable-placeholder="search for age"
+              show-more
+              :sort-by="['isRefined', 'name:asc']"
+            />
+          </div> -->
         </div>
         <div class="col-span-9 bg-white">
-          
-         <ais-hits class="z-10 relative py-8 bg-gray-100">
+          <ais-hits class="z-10 relative py-8 bg-gray-100">
             <ul
               slot-scope="{ items }"
               class="grid grid-cols-3 gap-4 md:gap-6 px-8 md:px-12"
@@ -87,18 +108,19 @@
               </li>
             </ul>
           </ais-hits>
-          
-          <div class="sticky bottom-0 z-20 py-8 flex items-center justify-between bg-white">
+
+          <div
+            class="sticky bottom-0 z-20 py-8 flex items-center justify-between bg-white"
+          >
             <ais-pagination />
             <ais-hits-per-page
               :items="[
                 { label: '12 hits per page', value: 12 },
                 { label: '24 hits per page', value: 24 },
-                { label: '60 hits per page', value: 60,  default: true },
+                { label: '60 hits per page', value: 60, default: true },
               ]"
             />
           </div>
-
         </div>
       </div>
     </div>
@@ -107,7 +129,11 @@
 <script>
 import algoliasearch from 'algoliasearch/lite'
 import 'instantsearch.css/themes/satellite-min.css'
-
+// import component
+import VueSlider from 'vue-slider-component/dist-css/vue-slider-component.umd.min.js'
+import 'vue-slider-component/dist-css/vue-slider-component.css'
+// import theme
+import 'vue-slider-component/theme/default.css'
 import { AisInstantSearch, AisSearchBox, AisHits } from 'vue-instantsearch'
 
 export default {
@@ -115,6 +141,7 @@ export default {
     AisInstantSearch,
     AisSearchBox,
     AisHits,
+    VueSlider,
   },
   data() {
     return {
@@ -127,6 +154,12 @@ export default {
   methods: {
     publicId(filename) {
       return 'samples/' + filename
+    },
+    toValue(value, range) {
+      return [
+        value.min !== null ? value.min : range.min,
+        value.max !== null ? value.max : range.max,
+      ]
     },
   },
 }

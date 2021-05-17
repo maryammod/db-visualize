@@ -4,7 +4,7 @@ const path = require("path");
 const cliProgress = require("cli-progress");
 const fs = require("fs");
 const dayjs = require("dayjs");
-
+const ObjectsToCsv = require('objects-to-csv')
 const { MongoClient } = require("mongodb");
 const uri = "mongodb://localhost:27017?writeConcern=majority";
 const client = new MongoClient(uri);
@@ -36,7 +36,10 @@ const run = async () => {
   while (await cursor.hasNext()) {
     const doc = await cursor.next();
     doc.plant_ids.forEach(async (thisPlant)=>{
-      q1_data.push({label:doc.label, plant_id: thisPlant})
+      q1_data.push({
+        label:doc.label, 
+        plant_id: thisPlant
+      })
     })
   };
 
@@ -59,13 +62,12 @@ const run = async () => {
       const doc2 = await cursor2.next();
       data.push( {label:d.label, plant_id: d.plant_id, count: doc2.count} )
     }
-
   }
 
-
-  console.log(data)
+  const csv = new ObjectsToCsv(data)
+  await csv.toDisk('./agg.csv')
   
-  fs.writeFileSync("agg.json", JSON.stringify(data));
+  // fs.writeFileSync("agg.json", JSON.stringify(data));
   process.exit();
 };
 

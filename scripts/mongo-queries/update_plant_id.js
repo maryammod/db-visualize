@@ -1,7 +1,7 @@
 db.getCollection('photos').find({ 
         // label: {$eq: "P007A90R"},
         // plant_id: { $regex: /^dlpea*/ } 
-        label: { $eq: "Brandon"}
+        label_2: { $eq: "Montcalm"}
     }).forEach( function (elem) {
         print(`${elem.label} | ${elem.plant_id} -> ${elem.plant_id_2}`)
         db.getCollection('photos').update(
@@ -10,8 +10,8 @@ db.getCollection('photos').find({
             },
             {
                 $set: {
-                    // plant_id_2: "dlpea",
-                    label_2: "Wheat"
+                    // plant_id_2: "beclipse",
+                    label_2: "Kidney Bean"
                 }
             }
         );

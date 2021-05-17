@@ -59,22 +59,7 @@ async function run() {
 
       for (const plantId of doc.plant_ids) {
         [
-          10,
-          15,
-          20,
-          25,
-          30,
-          35,
-          40,
-          45,
-          50,
-          55,
-          60,
-          65,
-          70,
-          75,
-          80,
-          85,
+          0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85,
           90,
         ].forEach((age) => {
           data.push({
@@ -87,7 +72,9 @@ async function run() {
     }
 
     for (const item of data) {
-      consola.info(`${item.label}  | ${item.plant_id}  | ${item.age} to ${item.age +4 }`);
+      consola.info(
+        `${item.label}  | ${item.plant_id}  | ${item.age} to ${item.age + 4}`
+      );
       let samples = photos.aggregate([
         {
           $match: {
@@ -115,7 +102,7 @@ async function run() {
           json.push(sample);
           fs.writeFileSync(jsonfile, JSON.stringify(json));
 
-          let command2 = `scp maryam@digits.acs.uwinnipeg.ca:${fileAddress} samples/${filename}`;
+          let command2 = `scp maryam@10.205.10.31:${fileAddress} samples/${filename}`;
           shell.exec(command2, { silent: false });
 
           consola.info(`        : saved ${filename}`);
