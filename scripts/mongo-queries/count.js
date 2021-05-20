@@ -33,7 +33,8 @@ const mappings = [
     max_age: "43",
   },
 ];
-db.getCollection("photos").createIndex(
+const collection = "dataset";
+db.getCollection(collection).createIndex(
   {
     label_h: 1,
   },
@@ -47,7 +48,7 @@ db.getCollection("photos").createIndex(
 mappings.forEach((mapping) => {
   let min = parseInt(mapping.min_age);
   let max = parseInt(mapping.max_age);
-  db.getCollection("photos")
+  db.getCollection(collection)
     .aggregate([
       {
         $match: {
@@ -59,13 +60,14 @@ mappings.forEach((mapping) => {
         $group: {
           _id: null,
           label_h: { $last: "$label_h" },
+          group: { $last: "$group" },
           count: { $sum: 1 },
         },
       },
     ])
     .forEach((res) => {
       print(
-        `{ label_h: "${mapping.label_h}", group: "${mapping.gtoup}", min_age: "${min}", max_age: "${max}", count:${res.count} },`
+        `{ label_h: "${res.label_h}", group: "${res.group}", min_age: "${min}", max_age: "${max}", count:${res.count} },`
       );
     });
 });

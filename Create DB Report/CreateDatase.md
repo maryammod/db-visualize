@@ -359,3 +359,39 @@ Table shows the number of images belonging to each group.
   { "group": "G3", "count": "173433" }
 ]
 ```
+
+## Result Dataset
+
+| label_h        | group | count  |
+| -------------- | ----- | ------ |
+| Wild Buckwheat | G1    | 31721  |
+| Field Pea      | G1    | 37482  |
+| Bean           | G1    | 121828 |
+| Canola         | G2    | 149303 |
+| Canada Thistle | G2    | 75775  |
+| Dandelion      | G2    | 82677  |
+| Soybean        | G2    | 130054 |
+| Smartweed      | G2    | 87931  |
+| Wheat          | G3    | 59661  |
+| Barnyard Grass | G3    | 61591  |
+| Oat            | G3    | 27025  |
+| Wild Oat       | G3    | 5074   |
+| Yellow Foxtail | G3    | 20082  |
+
+```json
+[
+  { "label_h": "Wild Buckwheat", "group": "G1", "count": 31721 },
+  { "label_h": "Field Pea", "group": "G1", "count": 37482 },
+  { "label_h": "Bean", "group": "G1", "count": 121828 },
+  { "label_h": "Canola", "group": "G2", "count": 149303 },
+  { "label_h": "Canada Thistle", "group": "G2", "count": 75775 },
+  { "label_h": "Dandelion", "group": "G2", "count": 82677 },
+  { "label_h": "Soybean", "group": "G2", "count": 130054 },
+  { "label_h": "Smartweed", "group": "G2", "count": 87931 },
+  { "label_h": "Wheat", "group": "G3", "count": 59661 },
+  { "label_h": "Barnyard Grass", "group": "G3", "count": 61591 },
+  { "label_h": "Oat", "group": "G3", "count": 27025 },
+  { "label_h": "Wild Oat", "group": "G3", "count": 5074 },
+  { "label_h": "Yellow Foxtail", "group": "G3", "count": 20082 }
+]
+```
